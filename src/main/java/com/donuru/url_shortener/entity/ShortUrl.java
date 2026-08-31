@@ -38,11 +38,19 @@ public class ShortUrl {
     @Column(name = "active", nullable = false)
     private boolean active;
 
+    @Column(name = "click_count", nullable = false)
+    @Builder.Default
+    private long clickCount = 0;
+
+    @Column(name = "last_accessed_at")
+    private LocalDateTime lastAccessedAt;
+
     @PrePersist
     protected void onCreate() {
         if (createdAt == null) {
             createdAt = LocalDateTime.now();
         }
         active = true;
+        clickCount = 0;
     }
 }

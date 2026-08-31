@@ -7,6 +7,8 @@ public record ShortUrlResponse(
         String shortUrl,
         String originalUrl,
         LocalDateTime createdAt,
-        LocalDateTime expiresAt
-) {
-}
+        LocalDateTime expiresAt,
+        long clickCount,
+        LocalDateTime lastAccessedAt
+) {}
+

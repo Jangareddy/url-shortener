@@ -58,24 +58,20 @@ public class UrlShortenerService {
         return toResponse(saved);
     }
 
-    @Transactional(readOnly = true)
+    private final CachedUrlLookupService cachedUrlLookupService;
+
+    @Transactional
     public String resolveOriginalUrl(String shortCode) {
 
-        ShortUrl shortUrl = repository.findByShortCode(shortCode)
-                .orElseThrow(() ->
-                        new ShortUrlNotFoundException(shortCode));
+        String originalUrl =
+                cachedUrlLookupService.getOriginalUrl(shortCode);
 
-        if (!shortUrl.isActive()) {
-            throw new ShortUrlNotFoundException(shortCode);
-        }
+        repository.recordClick(
+                shortCode,
+                LocalDateTime.now()
+        );
 
-        if (shortUrl.getExpiresAt() != null &&
-                shortUrl.getExpiresAt().isBefore(LocalDateTime.now())) {
-
-            throw new ShortUrlNotFoundException(shortCode);
-        }
-
-        return shortUrl.getOriginalUrl();
+        return originalUrl;
     }
 
     @Transactional(readOnly = true)
@@ -113,7 +109,7 @@ public class UrlShortenerService {
 
             if (scheme == null ||
                     (!scheme.equalsIgnoreCase("http") &&
-                     !scheme.equalsIgnoreCase("https"))) {
+                            !scheme.equalsIgnoreCase("https"))) {
 
                 throw new InvalidUrlException(
                         "Only HTTP and HTTPS URLs are supported"
@@ -130,13 +126,14 @@ public class UrlShortenerService {
     }
 
     private ShortUrlResponse toResponse(ShortUrl shortUrl) {
-
         return new ShortUrlResponse(
                 shortUrl.getShortCode(),
                 baseUrl + "/" + shortUrl.getShortCode(),
                 shortUrl.getOriginalUrl(),
                 shortUrl.getCreatedAt(),
-                shortUrl.getExpiresAt()
+                shortUrl.getExpiresAt(),
+                shortUrl.getClickCount(),
+                shortUrl.getLastAccessedAt()
         );
     }
 }
