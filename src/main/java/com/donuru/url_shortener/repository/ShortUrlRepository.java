@@ -22,8 +22,5 @@ public interface ShortUrlRepository extends JpaRepository<ShortUrl, Long> {
                 s.lastAccessedAt = :accessedAt
             where s.shortCode = :shortCode
             """)
-    int recordClick(
-            @Param("shortCode") String shortCode,
-            @Param("accessedAt") LocalDateTime accessedAt
-    );
+    int recordClick(@Param("shortCode") String shortCode, @Param("accessedAt") LocalDateTime accessedAt);
 }

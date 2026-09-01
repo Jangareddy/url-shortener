@@ -14,10 +14,7 @@ public class ImplementationAgent implements EngineeringAgent {
     }
 
     @Override
-    public String execute(
-            WorkflowContext context,
-            WorkflowTask task) {
-
+    public String execute(WorkflowContext context, WorkflowTask task) {
         String result = """
                 Implementation Plan:
                 - Create URL shortening REST API
@@ -28,12 +25,7 @@ public class ImplementationAgent implements EngineeringAgent {
                 - Validate URLs and expiration
                 - Handle collisions with bounded retries
                 """;
-
-        context.putContext(
-                "implementationPlan",
-                result
-        );
-
+        context.putContext("implementationPlan", result);
         return result;
     }
 }

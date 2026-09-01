@@ -14,9 +14,7 @@ public class TestingAgent implements EngineeringAgent {
     }
 
     @Override
-    public String execute(
-            WorkflowContext context,
-            WorkflowTask task) {
+    public String execute(WorkflowContext context, WorkflowTask task) {
 
         String result = """
                 Validation Plan:
@@ -30,10 +28,7 @@ public class TestingAgent implements EngineeringAgent {
                 - Test workflow approval gates
                 """;
 
-        context.putContext(
-                "testPlan",
-                result
-        );
+        context.putContext("testPlan", result);
 
         return result;
     }

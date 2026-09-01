@@ -7,9 +7,5 @@ import com.donuru.url_shortener.agentic.model.WorkflowTask;
 public interface EngineeringAgent {
 
     WorkflowStage supports();
-
-    String execute(
-            WorkflowContext context,
-            WorkflowTask task
-    );
+    String execute(WorkflowContext context, WorkflowTask task);
 }

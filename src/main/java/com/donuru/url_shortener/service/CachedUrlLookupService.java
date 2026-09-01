@@ -19,20 +19,13 @@ public class CachedUrlLookupService {
     @Cacheable(value = "shortUrls", key = "#shortCode")
     @Transactional(readOnly = true)
     public String getOriginalUrl(String shortCode) {
-
-        ShortUrl shortUrl = repository.findByShortCode(shortCode)
-                .orElseThrow(() ->
-                        new ShortUrlNotFoundException(shortCode));
-
+        ShortUrl shortUrl = repository.findByShortCode(shortCode).orElseThrow(() -> new ShortUrlNotFoundException(shortCode));
         if (!shortUrl.isActive()) {
             throw new ShortUrlNotFoundException(shortCode);
         }
-
-        if (shortUrl.getExpiresAt() != null &&
-                shortUrl.getExpiresAt().isBefore(LocalDateTime.now())) {
+        if (shortUrl.getExpiresAt() != null && shortUrl.getExpiresAt().isBefore(LocalDateTime.now())) {
             throw new ShortUrlNotFoundException(shortCode);
         }
-
         return shortUrl.getOriginalUrl();
     }
 }

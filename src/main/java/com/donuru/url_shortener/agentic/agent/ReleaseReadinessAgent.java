@@ -14,10 +14,7 @@ public class ReleaseReadinessAgent implements EngineeringAgent {
     }
 
     @Override
-    public String execute(
-            WorkflowContext context,
-            WorkflowTask task) {
-
+    public String execute(WorkflowContext context, WorkflowTask task) {
         String result = """
                 Release Readiness:
                 - Implementation completed
@@ -27,12 +24,7 @@ public class ReleaseReadinessAgent implements EngineeringAgent {
                 - No workflow safe-stop detected
                 - Final human approval required before release
                 """;
-
-        context.putContext(
-                "releaseReadiness",
-                result
-        );
-
+        context.putContext("releaseReadiness", result);
         return result;
     }
 }

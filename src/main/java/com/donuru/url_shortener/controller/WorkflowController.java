@@ -16,71 +16,32 @@ public class WorkflowController {
     private final WorkflowOrchestrator orchestrator;
 
     @PostMapping
-    public ResponseEntity<WorkflowContext> startWorkflow(
-            @RequestBody StartWorkflowRequest request) {
-
-        return ResponseEntity.ok(
-                orchestrator.startWorkflow(
-                        request.scenarioType(),
-                        request.requirement()
-                )
-        );
+    public ResponseEntity<WorkflowContext> startWorkflow(@RequestBody StartWorkflowRequest request) {
+        return ResponseEntity.ok(orchestrator.startWorkflow(request.scenarioType(), request.requirement()));
     }
 
     @GetMapping("/{workflowId}")
-    public ResponseEntity<WorkflowContext> getWorkflow(
-            @PathVariable String workflowId) {
-
-        return ResponseEntity.ok(
-                orchestrator.getWorkflow(workflowId)
-        );
+    public ResponseEntity<WorkflowContext> getWorkflow(@PathVariable String workflowId) {
+        return ResponseEntity.ok(orchestrator.getWorkflow(workflowId));
     }
 
     @PostMapping("/{workflowId}/tasks/{taskId}/approve")
-    public ResponseEntity<WorkflowContext> approveTask(
-            @PathVariable String workflowId,
-            @PathVariable String taskId) {
-
-        return ResponseEntity.ok(
-                orchestrator.approveTask(
-                        workflowId,
-                        taskId
-                )
-        );
+    public ResponseEntity<WorkflowContext> approveTask(@PathVariable String workflowId, @PathVariable String taskId) {
+        return ResponseEntity.ok(orchestrator.approveTask(workflowId, taskId));
     }
 
     @PostMapping("/{workflowId}/tasks/{taskId}/rollback")
-    public ResponseEntity<WorkflowContext> rollbackTask(
-            @PathVariable String workflowId,
-            @PathVariable String taskId) {
-
-        return ResponseEntity.ok(
-                orchestrator.rollbackTask(
-                        workflowId,
-                        taskId
-                )
-        );
+    public ResponseEntity<WorkflowContext> rollbackTask(@PathVariable String workflowId, @PathVariable String taskId) {
+        return ResponseEntity.ok(orchestrator.rollbackTask(workflowId, taskId));
     }
 
     @PostMapping("/{workflowId}/tasks/{taskId}/replan")
-    public ResponseEntity<WorkflowContext> replanTask(
-            @PathVariable String workflowId,
-            @PathVariable String taskId) {
-
-        return ResponseEntity.ok(
-                orchestrator.replanFrom(
-                        workflowId,
-                        taskId
-                )
-        );
+    public ResponseEntity<WorkflowContext> replanTask(@PathVariable String workflowId, @PathVariable String taskId) {
+        return ResponseEntity.ok(orchestrator.replanFrom(workflowId, taskId));
     }
 
     @GetMapping("/{workflowId}/metrics")
-    public ResponseEntity<WorkflowMetrics> getMetrics(
-            @PathVariable String workflowId) {
-
-        return ResponseEntity.ok(
-                orchestrator.getMetrics(workflowId)
-        );
+    public ResponseEntity<WorkflowMetrics> getMetrics(@PathVariable String workflowId) {
+        return ResponseEntity.ok(orchestrator.getMetrics(workflowId));
     }
 }

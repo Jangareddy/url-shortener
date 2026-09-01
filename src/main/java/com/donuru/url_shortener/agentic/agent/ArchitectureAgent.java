@@ -14,14 +14,9 @@ public class ArchitectureAgent implements EngineeringAgent {
     }
 
     @Override
-    public String execute(
-            WorkflowContext context,
-            WorkflowTask task) {
+    public String execute(WorkflowContext context, WorkflowTask task) {
 
-        Object requirementAnalysis =
-                context.getSharedContext()
-                        .get("requirementAnalysis");
-
+        Object requirementAnalysis = context.getSharedContext().get("requirementAnalysis");
         String result = """
                 Architecture Decision:
                 - Spring Boot REST service
@@ -34,16 +29,8 @@ public class ArchitectureAgent implements EngineeringAgent {
                 - Human approval gates for high-impact stages
                 """;
 
-        context.putContext(
-                "architecture",
-                result
-        );
-
-        context.recordDecision(
-                "architecture-design",
-                "Spring Boot + PostgreSQL + Redis architecture selected"
-        );
-
+        context.putContext("architecture", result);
+        context.recordDecision("architecture-design", "Spring Boot + PostgreSQL + Redis architecture selected");
         return result;
     }
 }

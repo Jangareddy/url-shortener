@@ -14,10 +14,7 @@ public class DocumentationAgent implements EngineeringAgent {
     }
 
     @Override
-    public String execute(
-            WorkflowContext context,
-            WorkflowTask task) {
-
+    public String execute(WorkflowContext context, WorkflowTask task) {
         String result = """
                 Documentation Artifacts:
                 - Architecture overview
@@ -28,12 +25,7 @@ public class DocumentationAgent implements EngineeringAgent {
                 - Assumptions
                 - Limitations and trade-offs
                 """;
-
-        context.putContext(
-                "documentationPlan",
-                result
-        );
-
+        context.putContext("documentationPlan", result);
         return result;
     }
 }

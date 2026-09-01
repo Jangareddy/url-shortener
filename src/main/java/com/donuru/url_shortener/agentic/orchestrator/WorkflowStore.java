@@ -9,9 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class WorkflowStore {
-
-    private final Map<String, WorkflowContext> workflows =
-            new ConcurrentHashMap<>();
+    private final Map<String, WorkflowContext> workflows = new ConcurrentHashMap<>();
 
     public void save(WorkflowContext context) {
         workflows.put(context.getWorkflowId(), context);

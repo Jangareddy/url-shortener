@@ -5,10 +5,6 @@ import jakarta.validation.constraints.Size;
 
 public record CreateShortUrlRequest(
 
-        @NotBlank(message = "URL is required")
-        @Size(max = 2048, message = "URL must not exceed 2048 characters")
-        String url,
-
-        Integer expirationDays
-) {
+        @NotBlank(message = "URL is required") @Size(max = 2048, message = "URL must not exceed 2048 characters") String url,
+        Integer expirationDays) {
 }

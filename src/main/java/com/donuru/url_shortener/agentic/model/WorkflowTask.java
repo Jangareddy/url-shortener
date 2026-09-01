@@ -12,26 +12,18 @@ import java.util.Set;
 @Setter
 @Builder
 public class WorkflowTask {
-
     private String taskId;
-
     private WorkflowStage stage;
-
     private StageStatus status;
     private LocalDateTime startedAt;
     private LocalDateTime completedAt;
     @Builder.Default
     private Set<String> dependencies = new HashSet<>();
-
     @Builder.Default
     private int retryCount = 0;
-
     @Builder.Default
     private int maxRetries = 3;
-
     private boolean humanApprovalRequired;
-
     private String output;
-
     private String failureReason;
 }

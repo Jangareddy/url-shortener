@@ -14,10 +14,7 @@ public class ReviewAgent implements EngineeringAgent {
     }
 
     @Override
-    public String execute(
-            WorkflowContext context,
-            WorkflowTask task) {
-
+    public String execute(WorkflowContext context, WorkflowTask task) {
         String result = """
                 Engineering Review:
                 - Validate API contract
@@ -29,10 +26,7 @@ public class ReviewAgent implements EngineeringAgent {
                 - Confirm release requires human approval
                 """;
 
-        context.putContext(
-                "reviewResult",
-                result
-        );
+        context.putContext("reviewResult", result);
 
         return result;
     }
