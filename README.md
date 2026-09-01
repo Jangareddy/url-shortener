@@ -2,7 +2,9 @@
 
 A Spring Boot URL shortener extended with a governed agentic software engineering workflow.
 
-The prototype demonstrates how a requirement can move through the software development lifecycle using explicit workflow dependencies, agent execution, human approval gates, validation, auditability, retries, rollback, replanning, and release-readiness controls.
+The prototype demonstrates how a requirement can move through the software development lifecycle using explicit workflow
+dependencies, agent execution, human approval gates, validation, auditability, retries, rollback, replanning, and
+release-readiness controls.
 
 ---
 

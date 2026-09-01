@@ -17,11 +17,11 @@ public interface ShortUrlRepository extends JpaRepository<ShortUrl, Long> {
 
     @Modifying
     @Query("""
-       update ShortUrl s
-       set s.clickCount = s.clickCount + 1,
-           s.lastAccessedAt = :accessedAt
-       where s.shortCode = :shortCode
-       """)
+            update ShortUrl s
+            set s.clickCount = s.clickCount + 1,
+                s.lastAccessedAt = :accessedAt
+            where s.shortCode = :shortCode
+            """)
     int recordClick(
             @Param("shortCode") String shortCode,
             @Param("accessedAt") LocalDateTime accessedAt

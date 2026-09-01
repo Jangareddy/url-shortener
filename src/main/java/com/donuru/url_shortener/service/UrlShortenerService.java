@@ -22,7 +22,7 @@ public class UrlShortenerService {
 
     private final ShortUrlRepository repository;
     private final ShortCodeGenerator shortCodeGenerator;
-
+    private final CachedUrlLookupService cachedUrlLookupService;
     @Value("${app.base-url:http://localhost:8080}")
     private String baseUrl;
 
@@ -57,8 +57,6 @@ public class UrlShortenerService {
 
         return toResponse(saved);
     }
-
-    private final CachedUrlLookupService cachedUrlLookupService;
 
     @Transactional
     public String resolveOriginalUrl(String shortCode) {

@@ -38,6 +38,7 @@ class WorkflowOrchestratorTest {
                         .getStatus()
         );
     }
+
     @Test
     void shouldCompleteWorkflowAfterApprovals() {
 
@@ -123,7 +124,9 @@ class WorkflowOrchestratorTest {
                                 task.getStatus()
                                         == StageStatus.COMPLETED)
         );
-    }@Test
+    }
+
+    @Test
     void shouldReplanDownstreamTasksWhenArchitectureChanges() {
 
         WorkflowContext context =
@@ -177,7 +180,9 @@ class WorkflowOrchestratorTest {
                                 "downstream tasks replanned"
                         )
         );
-    }@Test
+    }
+
+    @Test
     void shouldRejectApprovalWhenTaskIsNotWaitingForApproval() {
 
         WorkflowContext context =

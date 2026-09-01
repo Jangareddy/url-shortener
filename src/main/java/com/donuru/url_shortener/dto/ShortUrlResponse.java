@@ -10,5 +10,6 @@ public record ShortUrlResponse(
         LocalDateTime expiresAt,
         long clickCount,
         LocalDateTime lastAccessedAt
-) {}
+) {
+}
 

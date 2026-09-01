@@ -15,19 +15,15 @@ public class WorkflowContext {
 
     private final String workflowId = UUID.randomUUID().toString();
     private final LocalDateTime startedAt = LocalDateTime.now();
-    private LocalDateTime completedAt;
-
     private final Map<String, WorkflowTask> tasks =
             new LinkedHashMap<>();
-
     private final Map<String, Object> sharedContext =
             new ConcurrentHashMap<>();
-
     private final Map<String, String> decisions =
             new ConcurrentHashMap<>();
-
     private final List<String> auditTrail =
             new CopyOnWriteArrayList<>();
+    private LocalDateTime completedAt;
 
     public void addTask(WorkflowTask task) {
         tasks.put(task.getTaskId(), task);
@@ -51,7 +47,9 @@ public class WorkflowContext {
     public void markCompleted() {
         completedAt = LocalDateTime.now();
         recordAudit("WORKFLOW COMPLETED");
-    }public void markInProgress() {
+    }
+
+    public void markInProgress() {
         completedAt = null;
     }
 }
