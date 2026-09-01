@@ -19,14 +19,6 @@ public class WorkflowOrchestrator {
     private final WorkflowStore workflowStore;
     private final List<EngineeringAgent> agents;
 
-    public WorkflowContext startWorkflow() {
-        WorkflowContext context = workflowGraph.createDefaultWorkflow();
-        workflowStore.save(context);
-        context.recordAudit("WORKFLOW STARTED");
-        executeReadyTasks(context);
-        return context;
-    }
-
     public WorkflowContext getWorkflow(String workflowId) {
         return workflowStore.find(workflowId).orElseThrow(() -> new IllegalArgumentException("Workflow not found: " + workflowId));
     }

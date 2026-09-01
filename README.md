@@ -470,7 +470,8 @@ Current limitations include:
 - Engineering agents are deterministic local implementations rather than external LLM-backed agents.
 - Brownfield analysis reasons from supplied requirements/context rather than dynamically inspecting arbitrary repositories.
 - Rollback represents workflow-level rollback and does not reverse external database or deployment changes.
-- Reliability metrics are prototype-level. Success rate and MTTR are included; MTTR is approximated from recovered retry execution time and can be made more precise with durable failure and recovery timestamps.- Parallel workflow execution uses application-process asynchronous execution rather than a distributed workflow engine.
+- Reliability metrics are prototype-level. Success rate and MTTR are included; MTTR is approximated from recovered retry execution time and can be made more precise with durable failure and recovery timestamps.
+- Parallel workflow execution uses application-process asynchronous execution rather than a distributed workflow engine.
 - Policy enforcement demonstrates the governance pattern but is not a complete enterprise security/compliance policy engine.
 
 ---

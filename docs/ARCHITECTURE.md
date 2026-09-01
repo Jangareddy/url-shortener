@@ -272,8 +272,6 @@ Metrics currently include:
 
 These metrics are prototype-level. MTTR is currently approximated from recovered retry execution time and can be made more precise with durable failure and recovery timestamps.
 
-Additional reliability metrics such as success rate and MTTR are natural extensions to the current metrics model.
-
 ## 14. Scenario Model
 
 The orchestration supports:

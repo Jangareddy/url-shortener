@@ -1,17 +1,16 @@
 package com.donuru.url_shortener.agentic.orchestrator;
 
-import com.donuru.url_shortener.agentic.agent.EngineeringAgent;
-import com.donuru.url_shortener.agentic.model.*;
+import com.donuru.url_shortener.agentic.model.ScenarioType;
+import com.donuru.url_shortener.agentic.model.StageStatus;
+import com.donuru.url_shortener.agentic.model.WorkflowContext;
+import com.donuru.url_shortener.agentic.model.WorkflowTask;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(classes = {WorkflowOrchestratorTest.FailingAgentTestConfig.class})
+@SpringBootTest
 class WorkflowOrchestratorTest {
 
     @Autowired
@@ -72,24 +71,5 @@ class WorkflowOrchestratorTest {
         WorkflowTask task = rolledBack.getTasks().get("implementation");
         assertEquals(StageStatus.ROLLED_BACK, task.getStatus());
         assertNull(task.getOutput());
-    }
-
-    @TestConfiguration
-    static class FailingAgentTestConfig {
-        @Bean
-        @Primary
-        EngineeringAgent failingImplementationAgent() {
-            return new EngineeringAgent() {
-                @Override
-                public WorkflowStage supports() {
-                    return WorkflowStage.IMPLEMENTATION;
-                }
-
-                @Override
-                public String execute(WorkflowContext context, WorkflowTask task) {
-                    throw new IllegalStateException("Simulated implementation failure");
-                }
-            };
-        }
     }
 }
