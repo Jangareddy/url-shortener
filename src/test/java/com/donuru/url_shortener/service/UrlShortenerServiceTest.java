@@ -3,7 +3,6 @@ package com.donuru.url_shortener.service;
 import com.donuru.url_shortener.dto.CreateShortUrlRequest;
 import com.donuru.url_shortener.exception.InvalidUrlException;
 import com.donuru.url_shortener.repository.ShortUrlRepository;
-import com.donuru.url_shortener.util.UrlShortenerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;

@@ -439,7 +439,7 @@ public class WorkflowOrchestrator {
 
         WorkflowContext context =
                 getWorkflow(workflowId);
-
+        context.markInProgress();
         WorkflowTask changedTask =
                 context.getTasks()
                         .get(changedTaskId);

@@ -2,7 +2,7 @@ package com.donuru.url_shortener.controller;
 
 import com.donuru.url_shortener.dto.CreateShortUrlRequest;
 import com.donuru.url_shortener.dto.ShortUrlResponse;
-import com.donuru.url_shortener.util.UrlShortenerService;
+import com.donuru.url_shortener.service.UrlShortenerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

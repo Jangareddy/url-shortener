@@ -1,4 +1,4 @@
-package com.donuru.url_shortener.util;
+package com.donuru.url_shortener.service;
 
 import com.donuru.url_shortener.dto.CreateShortUrlRequest;
 import com.donuru.url_shortener.dto.ShortUrlResponse;
@@ -6,8 +6,6 @@ import com.donuru.url_shortener.entity.ShortUrl;
 import com.donuru.url_shortener.exception.InvalidUrlException;
 import com.donuru.url_shortener.exception.ShortUrlNotFoundException;
 import com.donuru.url_shortener.repository.ShortUrlRepository;
-import com.donuru.url_shortener.service.CachedUrlLookupService;
-import com.donuru.url_shortener.service.ShortCodeGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

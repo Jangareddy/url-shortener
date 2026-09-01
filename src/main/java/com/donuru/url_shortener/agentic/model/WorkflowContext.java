@@ -3,11 +3,12 @@ package com.donuru.url_shortener.agentic.model;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Getter
 public class WorkflowContext {
@@ -20,13 +21,13 @@ public class WorkflowContext {
             new LinkedHashMap<>();
 
     private final Map<String, Object> sharedContext =
-            new LinkedHashMap<>();
+            new ConcurrentHashMap<>();
 
     private final Map<String, String> decisions =
-            new LinkedHashMap<>();
+            new ConcurrentHashMap<>();
 
     private final List<String> auditTrail =
-            new ArrayList<>();
+            new CopyOnWriteArrayList<>();
 
     public void addTask(WorkflowTask task) {
         tasks.put(task.getTaskId(), task);
@@ -50,5 +51,7 @@ public class WorkflowContext {
     public void markCompleted() {
         completedAt = LocalDateTime.now();
         recordAudit("WORKFLOW COMPLETED");
+    }public void markInProgress() {
+        completedAt = null;
     }
 }
